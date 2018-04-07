@@ -7,7 +7,7 @@ import io.reactivex.disposables.CompositeDisposable
 
 interface Presenter<in V : MvpView> {
 
-    fun attachView(mvpView: V, lifecycle: Lifecycle? = null)
+    fun attachView(mvpView: V)
 
     fun detachView()
 }
@@ -22,9 +22,8 @@ open class BasePresenter<T : MvpView> : Presenter<T>, LifecycleObserver {
     val isViewAttached: Boolean
         get() = mvpView != null
 
-    override fun attachView(mvpView: T, lifecycle: Lifecycle?) {
+    override fun attachView(mvpView: T) {
         this.mvpView = mvpView
-        lifecycle?.let { it.addObserver(this) }
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)

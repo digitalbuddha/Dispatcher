@@ -4,11 +4,8 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import nyc.friendlyrobot.dispatcher.R
-import nyc.friendlyrobot.dispatcher.ui.Dispatcher
-import nyc.friendlyrobot.dispatcher.ui.RxState
-import nyc.friendlyrobot.dispatcher.ui.State
+import nyc.friendlyrobot.dispatcher.ui.*
 import javax.inject.Inject
 
 class MainActivity : InjectorActivity() {
@@ -19,6 +16,12 @@ class MainActivity : InjectorActivity() {
     @Inject
     lateinit var dispatcher: Dispatcher
 
+    @Inject
+    lateinit var passScreenCreator: PassScreenCreator
+
+    @Inject
+    lateinit var cart: Cart
+
     @SuppressLint("CheckResult")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,9 +31,7 @@ class MainActivity : InjectorActivity() {
 
         rxState.backStackEmpty().subscribe { setResult(Activity.RESULT_OK, Intent()); finish() }
 
-        rxState.ofType(State.Toasting::class.java).subscribe { Toast.makeText(this,"Hello World",Toast.LENGTH_SHORT).show() }
-
-        dispatcher.dispatch(State.Toasting)
+        dispatcher.goTo(Screen.Search)
 
     }
 
@@ -38,3 +39,4 @@ class MainActivity : InjectorActivity() {
         dispatcher.goBack()
     }
 }
+

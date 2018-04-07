@@ -2,7 +2,10 @@ package nyc.friendlyrobot.dispatcher.ui
 
 sealed class State {
     object GoingBack : State()
-    object Toasting:State()
+    object Loading : State()
+    data class Results(val items: List<String>) : State()
+    data class AddToCart(val item: String) : State()
+    data class cartItems(val items: HashMap<String, Int>) : State()
 }
 
 data class Creating(val screen: Screen) : State()
@@ -14,9 +17,12 @@ open class Showing(val screen: Screen) : State() {
 sealed class Screen : State() {
 
     var forward = true
-    //if replace is true, the current screen will be replaced on backstack
     var replace = false
 
     object Empty : Screen()
+
+    object Search : Screen()
+    object Cart:Screen()
+    object Checkout : Screen()
 }
 

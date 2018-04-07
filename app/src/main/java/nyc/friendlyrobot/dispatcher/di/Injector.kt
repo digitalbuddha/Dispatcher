@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Application
 import android.content.Context
+import nyc.friendlyrobot.dispatcher.di.modules.ActivityModule
 
 private val ACTIVIVTY_COMPONENT = "ACTIVITY_COMPONENT"
 

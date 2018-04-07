@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nyc.friendlyrobot.dispatcher.ui.search.LoadingView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:layout_constraintTop_toBottomOf="@+id/searchView"
+    android:visibility="invisible"
+    android:id="@+id/loadingView">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="Loading"
+        android:textSize="60dp"
+        android:layout_marginTop="80dp"
+        />
+
+</nyc.friendlyrobot.dispatcher.ui.search.LoadingView>

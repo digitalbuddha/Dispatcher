@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nyc.friendlyrobot.dispatcher.ui.search.SearchView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/searchView"
+    android:visibility="gone"
+    android:padding="24dp">
+
+    <EditText
+        android:id="@+id/searchText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toLeftOf="@id/searchButton"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:hint="Search"
+        />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        app:layout_constraintRight_toLeftOf="@id/cartButton"
+        android:text="Search"
+        android:id="@+id/searchButton"/>
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="Cart"
+        android:id="@+id/cartButton"/>
+
+</nyc.friendlyrobot.dispatcher.ui.search.SearchView>

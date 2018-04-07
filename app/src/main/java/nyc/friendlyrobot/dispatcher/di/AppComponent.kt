@@ -3,6 +3,8 @@ package nyc.friendlyrobot.dispatcher.di
 import android.app.Application
 import dagger.BindsInstance
 import dagger.Component
+import nyc.friendlyrobot.dispatcher.di.modules.ActivityModule
+import nyc.friendlyrobot.dispatcher.di.modules.AppModule
 import javax.inject.Singleton
 
 @Singleton
