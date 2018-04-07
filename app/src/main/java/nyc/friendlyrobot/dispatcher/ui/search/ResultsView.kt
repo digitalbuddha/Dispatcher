@@ -8,7 +8,7 @@ import android.view.View
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import io.reactivex.android.schedulers.AndroidSchedulers
-import kotlinx.android.synthetic.main.text_layout.view.*
+import kotlinx.android.synthetic.main.result_item.view.*
 import kotlinx.android.synthetic.main.view_results.view.*
 import nyc.friendlyrobot.dispatcher.R
 import nyc.friendlyrobot.dispatcher.di.Injector
@@ -98,7 +98,7 @@ class ResultItem(val itemText: String) : com.xwray.groupie.kotlinandroidextensio
         viewHolder.itemView.resultItem.text = itemText
     }
 
-    override fun getLayout() = R.layout.text_layout
+    override fun getLayout() = R.layout.result_item
 
 
 }

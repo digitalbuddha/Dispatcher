@@ -23,6 +23,7 @@ sealed class Screen : State() {
 
     object Search : Screen()
     object Cart:Screen()
-    object Checkout : Screen()
+    object CheckoutName : Screen()
+    data class CheckoutAddress(val firstName:String, val lastName: String) : Screen()
 }
 

@@ -1,8 +1,11 @@
-package nyc.friendlyrobot.dispatcher.ui
+package nyc.friendlyrobot.dispatcher.ui.checkout
 
 import android.annotation.SuppressLint
 import io.reactivex.android.schedulers.AndroidSchedulers
 import nyc.friendlyrobot.dispatcher.di.qualifiers.ActivityScoped
+import nyc.friendlyrobot.dispatcher.ui.Dispatcher
+import nyc.friendlyrobot.dispatcher.ui.RxState
+import nyc.friendlyrobot.dispatcher.ui.State
 import javax.inject.Inject
 
 @ActivityScoped

@@ -6,6 +6,7 @@ import android.os.Build
 import android.support.constraint.ConstraintLayout
 import android.text.Editable
 import android.text.TextWatcher
+import android.transition.Slide
 import android.transition.TransitionManager
 import android.util.AttributeSet
 import android.view.View
@@ -50,7 +51,7 @@ class SearchView @JvmOverloads constructor(context: Context, attrs: AttributeSet
         })
         cartButton.setOnClickListener {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                TransitionManager.beginDelayedTransition(parent as ViewGroup)
+                TransitionManager.beginDelayedTransition(parent as ViewGroup, Slide())
             }
 
             presenter.openCart()
