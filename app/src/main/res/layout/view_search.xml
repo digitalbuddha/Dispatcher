@@ -11,24 +11,17 @@
         android:id="@+id/searchText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintRight_toLeftOf="@id/searchButton"
+        app:layout_constraintRight_toLeftOf="@id/cartButton"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:hint="Search"
         />
 
-    <Button
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        app:layout_constraintRight_toLeftOf="@id/cartButton"
-        android:text="Search"
-        android:id="@+id/searchButton"/>
 
     <Button
         android:layout_width="100dp"
         android:layout_height="50dp"
         app:layout_constraintRight_toRightOf="parent"
-        android:text="Cart"
+        android:text="0"
         android:id="@+id/cartButton"/>
 
 </nyc.friendlyrobot.dispatcher.ui.search.SearchView>

@@ -8,13 +8,22 @@ import javax.inject.Singleton
 @Singleton
 class ItemStore @Inject constructor() {
     private val menuItems = listOf(
-            "Pizza",
-            "Soda",
-            "Cake"
+            "Cheese Pizza",
+            "Sausage Pizza",
+            "Pepper Pizza",
+            "Greek Pizza",
+            "Supreme Pizza",
+            "Square Pizza",
+            "Large Pizza",
+            "Sprite",
+            "Coke",
+            "Pepsi",
+            "Seltzer",
+            "Tea"
     )
 
     fun search(term: String): Observable<List<String>> {
-        return Observable.fromCallable { menuItems }
-                .delaySubscription(2, TimeUnit.SECONDS)
+        return Observable.fromCallable { menuItems.filter { it.contains(term) } }
+                .delaySubscription(200, TimeUnit.MILLISECONDS)
     }
 }

@@ -10,11 +10,11 @@ interface RxState {
     fun showingNot(clazz: Class<out Screen>): Observable<Showing>
     fun showing(clazz: Class<out Screen>): Observable<Showing>
     fun showing(): Observable<Showing>
-    fun ofType(clazz: Class<out State>): Observable<out State>
     fun isBackStackEmpty(): Boolean
     fun push(state: State)
     fun creating(): Observable<Creating>
     fun backStackEmpty(): Observable<Showing.BackStackEmpty>
+    fun <T> ofType(clazz: Class<T>): Observable<T>
 }
 
 @ActivityScoped
@@ -42,7 +42,7 @@ constructor(private val stateSubject: PublishSubject<State>,
 
     override fun creating() = stateSubject.ofType(Creating::class.java)
 
-    override fun ofType(clazz: Class<out State>) = stateSubject.ofType(clazz)
+     override fun <T> ofType(clazz: Class<T>):Observable<T> = stateSubject.ofType(clazz)
 
     override fun backStackEmpty() = stateSubject.ofType(Showing.BackStackEmpty::class.java)
 

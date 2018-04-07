@@ -12,10 +12,7 @@ import kotlinx.android.synthetic.main.cart_layout.view.*
 import kotlinx.android.synthetic.main.view_cart.view.*
 import nyc.friendlyrobot.dispatcher.R
 import nyc.friendlyrobot.dispatcher.di.Injector
-import nyc.friendlyrobot.dispatcher.ui.Dispatcher
-import nyc.friendlyrobot.dispatcher.ui.RxState
-import nyc.friendlyrobot.dispatcher.ui.Screen
-import nyc.friendlyrobot.dispatcher.ui.State
+import nyc.friendlyrobot.dispatcher.ui.*
 import nyc.friendlyrobot.dispatcher.ui.base.BasePresenter
 import nyc.friendlyrobot.dispatcher.ui.base.MvpView
 import javax.inject.Inject
@@ -61,7 +58,7 @@ class CartView @JvmOverloads constructor(context: Context, attrs: AttributeSet? 
     override fun populateAdapter(items: HashMap<String, Int>) {
         groupAdapter.clear()
         items.forEach { groupAdapter.add(CartItem(it)) }
-        groupAdapter.setOnItemClickListener { item, view -> presenter.incrementCount((item as CartItem).itemText) }
+        groupAdapter.setOnItemClickListener { item, view -> presenter.addItem((item as CartItem).itemText) }
         checkout.setOnClickListener { presenter.goToCheckout() }
     }
 
@@ -72,9 +69,9 @@ class CartView @JvmOverloads constructor(context: Context, attrs: AttributeSet? 
 
 
 class CartPresenter @Inject constructor(val dispatcher: Dispatcher,
-                                        val rxState: RxState) : BasePresenter<CartMVPView>() {
+                                        val rxState: RxState,
+                                        val cart: Cart) : BasePresenter<CartMVPView>() {
 
-    private lateinit var cartItems: HashMap<String, Int>
 
     @SuppressLint("CheckResult")
     override fun attachView(mvpView: CartMVPView) {
@@ -88,16 +85,15 @@ class CartPresenter @Inject constructor(val dispatcher: Dispatcher,
                 .subscribe { mvpView.hide() }
 
         rxState.ofType(State.cartItems::class.java)
-                .cast(State.cartItems::class.java)
-                .subscribe { mvpView.populateAdapter(it.items); cartItems =it.items }
+                .subscribe { mvpView.populateAdapter(it.items); }
     }
 
-    fun incrementCount(itemText: Map.Entry<String, Int>) {
+    fun addItem(itemText: Map.Entry<String, Int>) {
         dispatcher.dispatch(State.AddToCart(itemText.key))
     }
 
     fun goToCheckout() {
-//        dispatcher.goTo(Screen.Checkout)
+        dispatcher.goTo(Screen.Checkout)
     }
 }
 

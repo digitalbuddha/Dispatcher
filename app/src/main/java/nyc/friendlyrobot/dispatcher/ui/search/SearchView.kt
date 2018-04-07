@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Build
 import android.support.constraint.ConstraintLayout
+import android.text.Editable
+import android.text.TextWatcher
 import android.transition.TransitionManager
 import android.util.AttributeSet
 import android.view.View
@@ -22,6 +24,7 @@ import javax.inject.Inject
 class SearchView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyle: Int = 0) :
         ConstraintLayout(context, attrs, defStyle), SearchMVPView {
 
+
     @Inject
     lateinit var presenter: SearchPresenter
 
@@ -33,17 +36,34 @@ class SearchView @JvmOverloads constructor(context: Context, attrs: AttributeSet
     override fun onFinishInflate() {
         super.onFinishInflate()
         presenter.attachView(this)
-        searchButton.setOnClickListener { presenter.getResults(searchText.text.toString()) }
+        searchText.addTextChangedListener(object :TextWatcher{
+            override fun afterTextChanged(s: Editable?) {
+                presenter.getResults(searchText.text.toString())
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+        })
         cartButton.setOnClickListener {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    TransitionManager.beginDelayedTransition(parent as ViewGroup)
-                }
+                TransitionManager.beginDelayedTransition(parent as ViewGroup)
+            }
 
-            presenter.openCart() }
+            presenter.openCart()
+        }
     }
 
     override fun show() {
         visibility = View.VISIBLE
+    }
+
+    override fun itemAdded() {
+        val count:Int=cartButton.text.toString().toInt();
+        cartButton.text = (count+1).toString()
     }
 
     override fun hide() {
@@ -63,8 +83,9 @@ class SearchPresenter
         rxState.showing(Screen.Search::class.java)
                 .subscribe { mvpView.show() }
 
-        rxState.showingNot(Screen.Search::class.java)
-                .subscribe { mvpView.hide() }
+
+        rxState.ofType(State.AddToCart::class.java)
+                .subscribe { mvpView.itemAdded() }
     }
 
     @SuppressLint("CheckResult")
@@ -83,5 +104,6 @@ class SearchPresenter
 interface SearchMVPView : MvpView {
     fun show()
     fun hide()
+    fun itemAdded()
 }
 

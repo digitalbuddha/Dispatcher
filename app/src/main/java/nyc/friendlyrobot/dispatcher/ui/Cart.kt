@@ -18,7 +18,6 @@ class Cart @Inject constructor(val rxState: RxState,
     @SuppressLint("CheckResult")
     private fun setup() {
         rxState.ofType(State.AddToCart::class.java)
-                .cast(State.AddToCart::class.java)
                 .subscribe { incrementCount(it.item) }
 
         rxState.showing()

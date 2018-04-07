@@ -12,9 +12,9 @@ import kotlinx.android.synthetic.main.text_layout.view.*
 import kotlinx.android.synthetic.main.view_results.view.*
 import nyc.friendlyrobot.dispatcher.R
 import nyc.friendlyrobot.dispatcher.di.Injector
-import nyc.friendlyrobot.dispatcher.ui.Cart
 import nyc.friendlyrobot.dispatcher.ui.Dispatcher
 import nyc.friendlyrobot.dispatcher.ui.RxState
+import nyc.friendlyrobot.dispatcher.ui.Screen
 import nyc.friendlyrobot.dispatcher.ui.State
 import nyc.friendlyrobot.dispatcher.ui.base.BasePresenter
 import nyc.friendlyrobot.dispatcher.ui.base.MvpView
@@ -56,7 +56,7 @@ class ResultsView @JvmOverloads constructor(context: Context, attrs: AttributeSe
     private fun populateAdapter(items: List<String>) {
         groupAdapter.clear()
         items.forEach { groupAdapter.add(ResultItem(it)) }
-        groupAdapter.setOnItemClickListener { item, view -> presenter.addToCart((item as ResultItem).itemText)}
+        groupAdapter.setOnItemClickListener { item, view -> presenter.addToCart((item as ResultItem).itemText) }
     }
 
     override fun hide() {
@@ -66,8 +66,7 @@ class ResultsView @JvmOverloads constructor(context: Context, attrs: AttributeSe
 
 
 class ResultsPresenter @Inject constructor(val dispatcher: Dispatcher,
-                                           val rxState: RxState,
-                                           val cart: Cart) : BasePresenter<ResultsMVPView>() {
+                                           val rxState: RxState) : BasePresenter<ResultsMVPView>() {
 
     @SuppressLint("CheckResult")
     override fun attachView(mvpView: ResultsMVPView) {
@@ -79,6 +78,8 @@ class ResultsPresenter @Inject constructor(val dispatcher: Dispatcher,
 
         rxState.ofType(State.Loading::class.java)
                 .subscribe { mvpView.hide() }
+
+        rxState.showingNot(Screen.Search.javaClass).subscribe { mvpView.hide() }
     }
 
     fun addToCart(item: String) {

@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/container">
+
     <include layout="@layout/view_search" />
     <include layout="@layout/view_loading" />
     <include layout="@layout/view_results" />
