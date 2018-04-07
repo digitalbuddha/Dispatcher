@@ -26,9 +26,6 @@ class ResultsView @JvmOverloads constructor(context: Context, attrs: AttributeSe
     @Inject
     lateinit var presenter: ResultsPresenter
 
-    @Inject
-    lateinit var dispatcher: Dispatcher
-
     private val groupAdapter = GroupAdapter<ViewHolder>()
 
 

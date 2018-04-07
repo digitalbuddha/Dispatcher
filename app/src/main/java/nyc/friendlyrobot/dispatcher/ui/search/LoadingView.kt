@@ -18,9 +18,6 @@ class LoadingView @JvmOverloads constructor(context: Context, attrs: AttributeSe
     @Inject
     lateinit var presenter: LoadingPresenter
 
-    @Inject
-    lateinit var dispatcher: Dispatcher
-
     init {
         Injector.obtain(getContext()).inject(this)
     }

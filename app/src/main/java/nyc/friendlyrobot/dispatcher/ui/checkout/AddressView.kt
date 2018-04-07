@@ -39,7 +39,7 @@ class CheckoutAddressView @JvmOverloads constructor(context: Context, attrs: Att
 
     override fun show(checkoutAddress: Screen.CheckoutAddress) {
         visibility = View.VISIBLE
-        nameDisplay.text="Hello ${checkoutAddress.firstName} ${checkoutAddress.lastName}"
+        nameDisplay.text = "Hello ${checkoutAddress.firstName} ${checkoutAddress.lastName}"
     }
 
 
@@ -58,7 +58,7 @@ class CheckoutAddressPresenter @Inject constructor(val dispatcher: Dispatcher,
 
         rxState.showing(Screen.CheckoutAddress::class.java)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { mvpView.show((it.screen as Screen.CheckoutAddress) ) }
+                .subscribe { mvpView.show((it.screen as Screen.CheckoutAddress)) }
 
         rxState.showingNot(Screen.CheckoutAddress::class.java)
                 .subscribe { mvpView.hide() }
