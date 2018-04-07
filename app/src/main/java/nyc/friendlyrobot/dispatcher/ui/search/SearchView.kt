@@ -62,8 +62,8 @@ class SearchView @JvmOverloads constructor(context: Context, attrs: AttributeSet
     }
 
     override fun itemAdded() {
-        val count:Int=cartButton.text.toString().toInt();
-        cartButton.text = (count+1).toString()
+        val count:Int=cartButton.text.toString().split(" ")[1].toInt();
+        cartButton.text = "Items: ${(count + 1)}"
     }
 
     override fun hide() {

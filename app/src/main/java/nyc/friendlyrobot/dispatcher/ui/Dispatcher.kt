@@ -27,7 +27,7 @@ constructor(val rxState: RxState, private val backstack: Stack<Showing>) : Dispa
     override fun show(state: Showing) {
         //if replace is true, pop last screen off backstack
         if (state.screen.replace && backstack.isEmpty().not()) backstack.pop()
-        backstack.push(state)
+       if(backstack.empty() || backstack.peek()!=state) backstack.push(state)
         rxState.push(state)
         Timber.d("pushing " + backstack.peek().screen.toString())
     }

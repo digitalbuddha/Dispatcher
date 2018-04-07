@@ -12,13 +12,14 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/cartRecycler"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
 
     <Button
         android:id="@+id/checkout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/cartRecycler"/>
+        app:layout_constraintTop_toBottomOf="@id/cartRecycler"
+        android:text="Checkout"/>
 
 </nyc.friendlyrobot.dispatcher.ui.checkout.CartView>

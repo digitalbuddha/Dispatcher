@@ -21,7 +21,8 @@
         android:layout_width="100dp"
         android:layout_height="50dp"
         app:layout_constraintRight_toRightOf="parent"
-        android:text="0"
+        android:text="items: 0"
+        android:background="@android:color/white"
         android:id="@+id/cartButton"/>
 
 </nyc.friendlyrobot.dispatcher.ui.search.SearchView>

@@ -4,12 +4,13 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:layout_constraintTop_toTopOf="@+id/loadingView"
+    app:layout_constraintBottom_toTopOf="@+id/cartView"
     android:visibility="gone"
     android:layout_marginTop="60dp">
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:id="@+id/myRecylcer"
         app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
 
