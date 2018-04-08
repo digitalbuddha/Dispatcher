@@ -23,7 +23,7 @@ class MainActivity : InjectorActivity() {
     lateinit var dispatcher: Dispatcher
 
     @Inject
-    lateinit var passScreenCreator: PassScreenCreator
+    lateinit var myScreenCreator: MyScreenCreator
 
     @Inject
     lateinit var cart: Cart

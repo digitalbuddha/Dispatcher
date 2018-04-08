@@ -11,10 +11,10 @@ interface ScreenContainer {
 }
 
 @ActivityScoped
-class PassScreenCreator @Inject constructor(val rxState: RxState,
-                                            val dispatcher: Dispatcher,
-                                            val screenContainer: ScreenContainer,
-                                            val layouts:    @JvmSuppressWildcards Map<Class<*>, Int>) : ScreenCreator {
+class MyScreenCreator @Inject constructor(val rxState: RxState,
+                                          val dispatcher: Dispatcher,
+                                          val screenContainer: ScreenContainer,
+                                          val layouts:    @JvmSuppressWildcards Map<Class<*>, Int>) : ScreenCreator {
 
     val inflatedViews: MutableSet<Int> = HashSet()
 
