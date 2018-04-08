@@ -4,6 +4,7 @@ import android.content.Context
 import android.support.constraint.ConstraintLayout
 import android.util.AttributeSet
 import android.view.View
+import io.reactivex.android.schedulers.AndroidSchedulers
 import nyc.friendlyrobot.dispatcher.di.Injector
 import nyc.friendlyrobot.dispatcher.ui.Dispatcher
 import nyc.friendlyrobot.dispatcher.ui.RxState
@@ -45,9 +46,11 @@ class LoadingPresenter @Inject constructor(val dispatcher: Dispatcher,
         super.attachView(mvpView)
 
         rxState.ofType(State.Loading::class.java)
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { mvpView.show() }
 
         rxState.ofType(State.Results::class.java)
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { mvpView.hide() }
     }
 }

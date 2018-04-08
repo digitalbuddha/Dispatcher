@@ -106,9 +106,11 @@ class CartPresenter @Inject constructor(val dispatcher: Dispatcher,
                 .subscribe { mvpView.show() }
 
         rxState.showingNot(Screen.Cart::class.java)
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { mvpView.hide() }
 
         rxState.ofType(State.cartItems::class.java)
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { mvpView.populateAdapter(it.items); }
     }
 

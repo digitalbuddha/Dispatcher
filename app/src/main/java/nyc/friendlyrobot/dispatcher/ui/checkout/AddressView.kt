@@ -61,6 +61,7 @@ class CheckoutAddressPresenter @Inject constructor(val dispatcher: Dispatcher,
                 .subscribe { mvpView.show((it.screen as Screen.CheckoutAddress)) }
 
         rxState.showingNot(Screen.CheckoutAddress::class.java)
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { mvpView.hide() }
     }
 

@@ -11,6 +11,8 @@ import android.transition.TransitionManager
 import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.view_search.view.*
 import nyc.friendlyrobot.dispatcher.di.Injector
 import nyc.friendlyrobot.dispatcher.repository.ItemStore
@@ -82,10 +84,12 @@ class SearchPresenter
         super.attachView(mvpView)
 
         rxState.showing(Screen.Search::class.java)
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { mvpView.show() }
 
 
         rxState.ofType(State.AddToCart::class.java)
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { mvpView.itemAdded() }
     }
 
@@ -93,6 +97,8 @@ class SearchPresenter
     fun getResults(searchTerm: String) {
         itemStore.search(searchTerm)
                 .doOnSubscribe { dispatcher.dispatch(State.Loading) }
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { dispatcher.dispatch(State.Results(it)) }
 
     }

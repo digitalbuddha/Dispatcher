@@ -74,6 +74,7 @@ class ResultsPresenter @Inject constructor(val dispatcher: Dispatcher,
                 .subscribe { mvpView.show((it as State.Results).items) }
 
         rxState.ofType(State.Loading::class.java)
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { mvpView.hide() }
 
         rxState.showingNot(Screen.Search.javaClass).subscribe { mvpView.hide() }

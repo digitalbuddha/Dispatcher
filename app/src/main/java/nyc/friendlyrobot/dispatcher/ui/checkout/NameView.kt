@@ -75,11 +75,13 @@ class CheckoutNamePresenter @Inject constructor(val dispatcher: Dispatcher,
                 .subscribe { mvpView.show(it) }
 
         rxState.showingNot(Screen.CheckoutName::class.java)
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { mvpView.hide() }
     }
 
     fun submitName(firstName: String, lastName: String) {
         userRepository.update(firstName, lastName)
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { dispatcher.goTo(Screen.CheckoutAddress(firstName, lastName)) }
     }
 }
