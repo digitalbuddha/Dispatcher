@@ -119,7 +119,7 @@ class CartPresenter @Inject constructor(val dispatcher: Dispatcher,
     }
 
     fun goToCheckout() {
-        dispatcher.goTo(Screen.CheckoutName)
+        dispatcher.dispatch(Screen.CheckoutName)
     }
 }
 

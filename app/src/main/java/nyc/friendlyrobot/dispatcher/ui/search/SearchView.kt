@@ -104,7 +104,7 @@ class SearchPresenter
     }
 
     fun openCart() {
-        dispatcher.goTo(Screen.Cart)
+        dispatcher.dispatch(Screen.Cart)
     }
 }
 

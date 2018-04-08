@@ -66,7 +66,7 @@ class CheckoutAddressPresenter @Inject constructor(val dispatcher: Dispatcher,
     }
 
     fun submitAddress(firstAddress: String, lastAddress: String) {
-        dispatcher.goTo(Screen.CheckoutAddress(firstAddress, lastAddress))
+        dispatcher.dispatch(Screen.CheckoutAddress(firstAddress, lastAddress))
     }
 }
 

@@ -38,7 +38,7 @@ class MainActivity : InjectorActivity() {
         rxState.backStackEmpty().subscribe { setResult(Activity.RESULT_OK, Intent()); finish() }
         rxState.ofType(State.AddToCart::class.java).subscribe { Toast.makeText(this,"Adding ${it.item} ",Toast.LENGTH_SHORT).show() }
 
-        dispatcher.goTo(Screen.Search)
+        dispatcher.dispatch(Screen.Search)
 
     }
 

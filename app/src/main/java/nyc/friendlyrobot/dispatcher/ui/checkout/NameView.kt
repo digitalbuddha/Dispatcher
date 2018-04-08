@@ -82,7 +82,7 @@ class CheckoutNamePresenter @Inject constructor(val dispatcher: Dispatcher,
     fun submitName(firstName: String, lastName: String) {
         userRepository.update(firstName, lastName)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { dispatcher.goTo(Screen.CheckoutAddress(firstName, lastName)) }
+                .subscribe { dispatcher.dispatch(Screen.CheckoutAddress(firstName, lastName)) }
     }
 }
 
