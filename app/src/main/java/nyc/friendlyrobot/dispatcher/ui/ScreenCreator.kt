@@ -37,7 +37,7 @@ class MyScreenCreator @Inject constructor(val rxState: RxState,
                 inflatedViews.add(it)
                 screenContainer.inflateAndAdd(it)
             }
-            dispatcher.show(Showing(screenToCreate.screen))
+            dispatcher.dispatch(Showing(screenToCreate.screen))
         }
     }
 }

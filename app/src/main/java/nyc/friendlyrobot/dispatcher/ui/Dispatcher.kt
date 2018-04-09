@@ -6,8 +6,6 @@ import java.util.*
 
 interface Dispatcher {
     fun dispatch(state: State)
-    fun goTo(screen: Screen)
-    fun show(state: Showing)
     fun goBack()
     fun popScreensAndGoBack(vararg screenClasses: Class<out Screen>)
     fun clearBackstack()
@@ -17,19 +15,20 @@ interface Dispatcher {
 @ActivityScoped
 class RealDispatcher
 constructor(val rxState: RxState, private val backstack: Stack<Showing>) : Dispatcher {
-    override fun dispatch(state: State) = rxState.push(state)
-
-    override fun goTo(screen: Screen) {
-        screen.forward = true
-        rxState.push(Creating(screen))
-    }
-
-    override fun show(state: Showing) {
-        //if replace is true, pop last screen off backstack
-        if (state.screen.replace && backstack.isEmpty().not()) backstack.pop()
-       if(backstack.empty() || backstack.peek().screen!=state.screen) backstack.push(state)
-        rxState.push(state)
-        Timber.d("pushing " + backstack.peek().screen.toString())
+    override fun dispatch(state: State) {
+        when (state) {
+            is Screen -> {
+                state.forward = true
+                rxState.push(Creating(state))
+            }
+            is Showing->{
+                if (state.screen.replace && backstack.isEmpty().not()) backstack.pop()
+                if (backstack.empty() || backstack.peek().screen != state.screen) backstack.push(state)
+                rxState.push(state)
+                Timber.d("pushing %s", backstack.peek().screen.toString())
+            }
+            else -> rxState.push(state)
+        }
     }
 
     override fun goBack() {
@@ -57,7 +56,7 @@ constructor(val rxState: RxState, private val backstack: Stack<Showing>) : Dispa
     private fun reShowTopScreen() {
         val backTo = popLastShowingState()
         backTo.screen.forward = false
-        show(backTo)
+        dispatch(backTo)
     }
 
     private fun popLastShowingState(): Showing {

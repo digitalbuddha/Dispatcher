@@ -25,4 +25,7 @@
         android:background="@android:color/white"
         android:id="@+id/cartButton"/>
 
+    <include layout="@layout/view_loading" />
+    <include layout="@layout/view_results" />
+
 </nyc.friendlyrobot.dispatcher.ui.search.SearchView>
