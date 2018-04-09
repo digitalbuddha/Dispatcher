@@ -23,7 +23,10 @@ class ItemStore @Inject constructor() {
     )
 
     fun search(term: String): Observable<List<String>> {
-        return Observable.fromCallable { menuItems.filter { it.contains(term) } }
-                .delaySubscription(200, TimeUnit.MILLISECONDS)
+        return Observable
+            .fromCallable {
+                menuItems.filter { it.contains(term, ignoreCase = true) }
+            }
+            .delaySubscription(500, TimeUnit.MILLISECONDS)
     }
 }
