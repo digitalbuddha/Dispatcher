@@ -21,8 +21,8 @@ constructor(val rxState: RxState, private val backstack: Stack<Showing>) : Dispa
                 state.forward = true
                 rxState.push(Creating(state))
             }
-            is Showing->{
-                if (state.screen.replace && backstack.isEmpty().not()) backstack.pop()
+            is Showing -> {
+                if (state.screen.replace && !backstack.empty()) backstack.pop()
                 if (backstack.empty() || backstack.peek().screen != state.screen) backstack.push(state)
                 rxState.push(state)
                 Timber.d("pushing %s", backstack.peek().screen.toString())
@@ -60,10 +60,13 @@ constructor(val rxState: RxState, private val backstack: Stack<Showing>) : Dispa
     }
 
     private fun popLastShowingState(): Showing {
-        if (!backstack.empty()) {
+
+        return if (backstack.isEmpty()) {
+            Showing.BackStackEmpty
+        } else {
             Timber.d("popping " + backstack.peek())
+            backstack.pop()
         }
-        return if (backstack.isEmpty()) Showing.BackStackEmpty else backstack.pop()
     }
 }
 

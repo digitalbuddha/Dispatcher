@@ -1,23 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="48dp"
+    android:background="?attr/selectableItemBackground"
+    android:gravity="center_vertical"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp">
 
     <TextView
         android:id="@+id/cartItemName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="50dp"
-        app:layout_constraintRight_toLeftOf="@id/cartItemAmount"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        tools:text="@tools:sample/full_names"
+        android:textSize="14sp" />
+
+    <Space
+        android:layout_width="16dp"
+        android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/cartItemAmount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="50dp"
-        app:layout_constraintRight_toRightOf="parent"/>
+        tools:text="22"
+        android:textStyle="bold"
+        android:textSize="16sp" />
 
-
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>
