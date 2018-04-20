@@ -1,21 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<nyc.friendlyrobot.dispatcher.ui.search.LoadingView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<!--<android.support.constraint.ConstraintLayout-->
+<nyc.friendlyrobot.dispatcher.ui.search.LoadingView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:layout_constraintTop_toBottomOf="@+id/searchView"
-    android:visibility="invisible"
-    android:id="@+id/loadingView">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/loadingView"
+    app:layout_constraintTop_toBottomOf="@+id/searchBar"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    android:visibility="gone"
+    android:layout_marginTop="8dp"
+    tools:visibility="visible"
+    tools:showIn="@layout/view_search">
 
-    <TextView
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <!-- TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:text="Loading"
-        android:textSize="60dp"
-        android:layout_marginTop="80dp"
-        />
+        android:textSize="60sp"
+        android:layout_marginTop="80dp" /-->
 
+<!--</android.support.constraint.ConstraintLayout>-->
 </nyc.friendlyrobot.dispatcher.ui.search.LoadingView>

@@ -1,31 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<nyc.friendlyrobot.dispatcher.ui.search.SearchView xmlns:android="http://schemas.android.com/apk/res/android"
+<!--<android.support.constraint.ConstraintLayout-->
+<nyc.friendlyrobot.dispatcher.ui.search.SearchView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/searchView"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:descendantFocusability="beforeDescendants"
     android:visibility="gone"
-    android:padding="24dp">
+    tools:visibility="visible">
 
-    <EditText
-        android:id="@+id/searchText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintRight_toLeftOf="@id/cartButton"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        />
-
-
-    <Button
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:text="items: 0"
+    <LinearLayout
+        android:id="@+id/searchBar"
+        android:elevation="6dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:gravity="center_vertical"
         android:background="@android:color/white"
-        android:id="@+id/cartButton"/>
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+        <EditText
+            style="@style/Widget.AppCompat.AutoCompleteTextView"
+            android:drawableLeft="@drawable/ic_search"
+            android:drawableTint="@color/colorGrey"
+            android:drawablePadding="16dp"
+            android:background="@null"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:gravity="center_vertical"
+            android:hint="Find Item"
+            android:id="@+id/searchText"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+
+        <View
+            android:background="@color/colorLightGrey"
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp" />
+
+        <Button
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:minWidth="112dp"
+            android:drawableLeft="@drawable/ic_cart"
+            android:drawablePadding="8dp"
+            android:drawableTint="@color/colorAccent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:text="Items: 0"
+            android:id="@+id/cartButton" />
+
+    </LinearLayout>
 
     <include layout="@layout/view_loading" />
+
     <include layout="@layout/view_results" />
 
+<!--</android.support.constraint.ConstraintLayout>-->
 </nyc.friendlyrobot.dispatcher.ui.search.SearchView>

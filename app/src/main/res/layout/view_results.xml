@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<nyc.friendlyrobot.dispatcher.ui.search.ResultsView xmlns:android="http://schemas.android.com/apk/res/android"
+<!--<android.support.constraint.ConstraintLayout-->
+<nyc.friendlyrobot.dispatcher.ui.search.ResultsView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:layout_constraintTop_toTopOf="@+id/loadingView"
-    app:layout_constraintBottom_toTopOf="@+id/cartView"
     android:visibility="gone"
+    tools:visibility="visible"
+    tools:showIn="@layout/view_search"
     android:layout_marginTop="60dp">
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/myRecylcer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/myRecylcer"
+        tools:listitem="@layout/result_item"
         app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
 
 </nyc.friendlyrobot.dispatcher.ui.search.ResultsView>
+<!--</android.support.constraint.ConstraintLayout>-->
